@@ -1,4 +1,5 @@
-#include "productor.hpp"
+#include "productor.h"
+#include <windows.h>
 using namespace std;
 
 Productor::Productor(): Entidad("Productor"){}

@@ -6,13 +6,13 @@
 #include <conio.h>
 #include <windows.h>
 
-#include "menu.hpp"
-#include "entidad.hpp"
-#include "productor.hpp"
-#include "consumidor.hpp"
+#include "menu.h"
+#include "entidad.h"
+#include "productor.h"
+#include "consumidor.h"
 
 int main(){
-     // Inicializar la semilla para la generaciÃ³n de nÃºmeros aleatorios
+     // Inicializar la semilla para la generación de números aleatorios
     srand(time(nullptr));
     Menu::iniciar();
     return 0;

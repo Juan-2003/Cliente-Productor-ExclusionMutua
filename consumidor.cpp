@@ -1,5 +1,5 @@
 #include <windows.h>
-#include "consumidor.hpp"
+#include "consumidor.h"
 using namespace std;
 
 Consumidor::Consumidor(): Entidad("Consumidor"){}

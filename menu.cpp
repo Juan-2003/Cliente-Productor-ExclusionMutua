@@ -6,10 +6,10 @@
 #include <conio.h>
 #include <windows.h>
 
-#include "menu.hpp"
-#include "entidad.hpp"
-#include "consumidor.hpp"
-#include "productor.hpp"
+#include "menu.h"
+#include "entidad.h"
+#include "consumidor.h"
+#include "productor.h"
 
 using namespace std;
 
@@ -28,16 +28,26 @@ int Menu::generarNumeroAleatorio(int n){
 
 //Muestra la lista de la clase 'Entidad'
 void Menu::mostrarLista(Entidad* tmp){
+    int cont=0;
     vector<char>lista = tmp->getLista();
     for(char c : lista){
-        cout<<c<<" ";
+        if(cont>8){
+            cout<<c<<"  ";
+        }else{
+            cout<<c<<" ";
+        }
+        cont++;
+    }
+    cout<<endl;
+    for(int i=1;i<23;i++){
+        cout<<i<<" ";
     }
     cout<<endl;
 }
 
 void Menu::mostrarSecuencia(int elementos, Entidad* tmp){
     system("cls");
-    
+
     mostrarLista(tmp);
     cout<<"Cantidad Elementos: "<<elementos<<endl;
     cout<<"Entidad: "<<tmp->getTipoEntidad()<<endl;
@@ -53,7 +63,7 @@ void Menu::iniciar(){
     productor.setPtr(&lista[0]);
     consumidor.setPtr(&lista[0]);
     int elementos;
-    
+
     system("cls");
 
 
@@ -66,7 +76,7 @@ void Menu::iniciar(){
         }else{
             entidadPtr = &consumidor;
         }
-        
+
         entidadPtr->setCantidadElementos(generarNumeroAleatorio(1));
         elementos = entidadPtr->getCantidadElementos();
 
@@ -97,18 +107,13 @@ void Menu::iniciar(){
                         elementos = 0;
                         break;
                     }
-                }   
+                }
             }
             if(_kbhit()){
                 tecla = _getch();
                 break;
             }
         }
-        if(i == 2){
-            i = 1;
-        }
-        else if(i == 1){
-            i = 2;
-        }
+        i = generarNumeroAleatorio(0);
     }
 }

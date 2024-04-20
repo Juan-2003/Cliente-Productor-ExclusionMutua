@@ -1,24 +1,24 @@
-#include "entidad.hpp"
+#include "entidad.h"
 #include <algorithm>
 using namespace std;
 
 Entidad::Entidad(string tipoEntidad): tipoEntidad(tipoEntidad),
-                                    estadoActual("Dormido"), 
+                                    estadoActual("Dormido"),
                                     tiempoDormido(0.0){
         vector<char>lista;
                                     }
 
-Entidad::Entidad(string tipoEntidad, string estadoActual): 
+Entidad::Entidad(string tipoEntidad, string estadoActual):
                                             tipoEntidad(tipoEntidad),
                                             estadoActual(estadoActual),
                                             tiempoDormido(0.0){}
 
 Entidad::Entidad(string tipoEntidad, float tiempoDormido):
                                             tipoEntidad(tipoEntidad),
-                                            estadoActual("Dormido"), 
+                                            estadoActual("Dormido"),
                                             tiempoDormido(tiempoDormido){}
 
-Entidad::Entidad(string tipoEntidad, string estadoActual, float tiempoDormido): 
+Entidad::Entidad(string tipoEntidad, string estadoActual, float tiempoDormido):
                                         tipoEntidad(tipoEntidad),
                                         estadoActual(estadoActual),
                                         tiempoDormido(tiempoDormido){}
@@ -77,7 +77,7 @@ vector<char>& Entidad::getLista(){
     static bool bandera = true;
 
     if(bandera){
-        //Se establece el tamaÃ±o de la lista
+        //Se establece el tamaño de la lista
         Entidad::lista.resize(22);
         //Se llena el vector en todas las posiciones con '_'
         fill(Entidad::lista.begin(), Entidad::lista.end(), '_');
@@ -119,6 +119,3 @@ string Entidad::toString(){
             "Estado Actual: "+ estadoActual + "\n" +
             "Tiempo Dormido: "+ to_string(tiempoDormido);
 }
-
-
-                        
