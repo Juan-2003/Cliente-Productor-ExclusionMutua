@@ -6,7 +6,7 @@
 class Consumidor : public Entidad{
     public:
         Consumidor();
-        void quitarElemento(char*);
-        bool isListaDisponible() override;
+        void ejecutarOperacion() override;
+        bool ejecutarIsListaDisponible() override;
 };
 #endif  

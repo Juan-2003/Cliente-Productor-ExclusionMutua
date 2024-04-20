@@ -36,12 +36,16 @@ class Entidad{
 
         std::string getTipoEntidad();
         std::string getEstadoActual();
-        float getTiempoDormido();
-        std::vector<char>& getLista();
-        char* getPtr();
         int getCantidadElementos();
+        float getTiempoDormido();
+        char* getPtr();
+        std::vector<char>& getLista();
 
-        virtual bool isListaDisponible() = 0;
+        void operacion(char);
+        virtual void ejecutarOperacion() = 0;
+
+        bool isListaDisponible(char);
+        virtual bool ejecutarIsListaDisponible() = 0;
 
         std::string toString();
 

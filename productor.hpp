@@ -6,8 +6,7 @@
 class Productor : public Entidad{
     public:
         Productor();
-        void agregarElemento(char*);
-        bool isListaDisponible() override;
-
+        void ejecutarOperacion() override;
+        bool ejecutarIsListaDisponible() override;
 };
 #endif

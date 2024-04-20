@@ -4,7 +4,9 @@ using namespace std;
 
 Entidad::Entidad(string tipoEntidad): tipoEntidad(tipoEntidad),
                                     estadoActual("Dormido"), 
-                                    tiempoDormido(0.0){}
+                                    tiempoDormido(0.0){
+        vector<char>lista;
+                                    }
 
 Entidad::Entidad(string tipoEntidad, string estadoActual): 
                                             tipoEntidad(tipoEntidad),
@@ -54,11 +56,6 @@ string Entidad::getEstadoActual(){
     return this->estadoActual;
 }
 
-//Regresa un puntero
-char* Entidad::getPtr(){
-    return ptr;
-}
-
 int Entidad::getCantidadElementos(){
     return this->cantidadElementos;
 }
@@ -66,6 +63,12 @@ int Entidad::getCantidadElementos(){
 float Entidad::getTiempoDormido(){
     return this->tiempoDormido;
 }
+
+//Regresa un puntero
+char* Entidad::getPtr(){
+    return ptr;
+}
+
 
 vector<char>& Entidad::getLista(){
     /*Se utiliza 'bandera' en 'static' para que sea posible solo
@@ -81,6 +84,34 @@ vector<char>& Entidad::getLista(){
         bandera = false;
     }
     return lista;
+}
+
+void Entidad::operacion(char elemento){
+    /*Para poder obtener el indice se hace una resta del puntero que
+    llega menos la direccion de memoria de la posicion 0
+    Si wey, eso se puede hacer.
+    */
+    int indice = getPtr() - &lista[0];
+    /*Cada vez que se agrega un elemento, se recorre el puntero a la siguiente
+    posicion
+    */
+    if(indice > 21){
+        setPtr(&lista[0]);
+        *getPtr() = elemento;
+        setPtr(&lista[*getPtr() - lista[0] +1]);
+    }else{
+        *getPtr() = elemento;
+        setPtr(&lista[indice+1]);
+    }
+}
+
+bool Entidad::isListaDisponible(char elemento){
+    for(char n : lista){
+        if(n == elemento){
+            return true;
+        }
+    }
+    return false;
 }
 
 string Entidad::toString(){

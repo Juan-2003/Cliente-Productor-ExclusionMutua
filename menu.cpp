@@ -77,8 +77,8 @@ void Menu::iniciar(){
             if(entidadPtr->getTipoEntidad() == "Productor"){
                 for(int i = 0; i < elementos; i++){
                     mostrarSecuencia(elementos,entidadPtr);
-                    if(productor.isListaDisponible()){
-                        productor.agregarElemento(productor.getPtr());
+                    if(productor.ejecutarIsListaDisponible()){
+                        productor.ejecutarOperacion();
                         elementos--;
                     }else{
                         break;
@@ -87,8 +87,8 @@ void Menu::iniciar(){
             }else{
                 for(int i = 0; i < elementosProductor; i++){ // EC: 5
                     mostrarSecuencia(elementos,entidadPtr);
-                    if(consumidor.isListaDisponible()){
-                        consumidor.quitarElemento(consumidor.getPtr());
+                    if(consumidor.ejecutarIsListaDisponible()){
+                        consumidor.ejecutarOperacion();
                         elementos--;
                         if(elementos == 0){
                             break;
