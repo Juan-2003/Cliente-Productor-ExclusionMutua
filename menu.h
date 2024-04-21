@@ -9,6 +9,7 @@ class Menu{
         static int generarNumeroAleatorio(int);
         static void mostrarLista(Entidad*);
         static void mostrarSecuencia(int, Entidad*);
+        static void iniciarSecuencia(int elementos, Entidad* entidadPtr);
 
     public:
         static void iniciar();

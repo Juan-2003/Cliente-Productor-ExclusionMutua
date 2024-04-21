@@ -4,24 +4,28 @@ using namespace std;
 
 Entidad::Entidad(string tipoEntidad): tipoEntidad(tipoEntidad),
                                     estadoActual("Dormido"),
-                                    tiempoDormido(0.0){
-        vector<char>lista;
+                                    tiempoDormido(0.0),
+                                    cantidadElementos(0){
+
                                     }
 
 Entidad::Entidad(string tipoEntidad, string estadoActual):
                                             tipoEntidad(tipoEntidad),
                                             estadoActual(estadoActual),
-                                            tiempoDormido(0.0){}
+                                            tiempoDormido(0.0),
+                                            cantidadElementos(0){}
 
 Entidad::Entidad(string tipoEntidad, float tiempoDormido):
                                             tipoEntidad(tipoEntidad),
                                             estadoActual("Dormido"),
-                                            tiempoDormido(tiempoDormido){}
+                                            tiempoDormido(tiempoDormido),
+                                            cantidadElementos(0){}
 
 Entidad::Entidad(string tipoEntidad, string estadoActual, float tiempoDormido):
                                         tipoEntidad(tipoEntidad),
                                         estadoActual(estadoActual),
-                                        tiempoDormido(tiempoDormido){}
+                                        tiempoDormido(tiempoDormido),
+                                        cantidadElementos(0){}
 
 //Se define el vector 'lista'
 vector<char> Entidad::lista;
@@ -77,7 +81,7 @@ vector<char>& Entidad::getLista(){
     static bool bandera = true;
 
     if(bandera){
-        //Se establece el tamaño de la lista
+        //Se establece el tamaï¿½o de la lista
         Entidad::lista.resize(22);
         //Se llena el vector en todas las posiciones con '_'
         fill(Entidad::lista.begin(), Entidad::lista.end(), '_');

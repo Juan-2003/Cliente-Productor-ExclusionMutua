@@ -31,7 +31,7 @@ void Menu::mostrarLista(Entidad* tmp){
     int cont=0;
     vector<char>lista = tmp->getLista();
     for(char c : lista){
-        if(cont>8){
+        if(cont > 8){
             cout<<c<<"  ";
         }else{
             cout<<c<<" ";
@@ -62,58 +62,48 @@ void Menu::iniciar(){
     Entidad* entidadPtr;
     productor.setPtr(&lista[0]);
     consumidor.setPtr(&lista[0]);
-    int elementos;
 
-    system("cls");
-
-
-
-    char tecla = '_';
-    while(tecla != 'q'){
-        static int i = 2;
-        if(i % 2 == 0){
+    while(true){
+        //Numero aleatorio para elejir la siguiente entidad
+        int numeroAleatorio = generarNumeroAleatorio(0);
+        
+        if(numeroAleatorio % 2 == 0){
             entidadPtr = &productor;
         }else{
             entidadPtr = &consumidor;
         }
 
         entidadPtr->setCantidadElementos(generarNumeroAleatorio(1));
-        elementos = entidadPtr->getCantidadElementos();
+        int elementos = entidadPtr->getCantidadElementos();
+        system("cls");
 
-        while(elementos > 0 ){
-            int elementosProductor;
-            system("cls");
-            elementosProductor = productor.getCantidadElementos();
-            if(entidadPtr->getTipoEntidad() == "Productor"){
-                for(int i = 0; i < elementos; i++){
-                    mostrarSecuencia(elementos,entidadPtr);
-                    if(productor.ejecutarIsListaDisponible()){
-                        productor.ejecutarOperacion();
-                        elementos--;
-                    }else{
-                        break;
-                    }
-                }
-            }else{
-                for(int i = 0; i < elementosProductor; i++){ // EC: 5
-                    mostrarSecuencia(elementos,entidadPtr);
-                    if(consumidor.ejecutarIsListaDisponible()){
-                        consumidor.ejecutarOperacion();
-                        elementos--;
-                        if(elementos == 0){
-                            break;
-                        }
-                    }else{
-                        elementos = 0;
-                        break;
-                    }
-                }
-            }
-            if(_kbhit()){
-                tecla = _getch();
-                break;
-            }
-        }
-        i = generarNumeroAleatorio(0);
+        iniciarSecuencia(elementos, entidadPtr);
+
     }
 }
+
+void Menu::iniciarSecuencia(int elementos, Entidad* entidadPtr){
+    for(int i = 0; elementos > 0; i++){ // EC: 5
+        //Terminar programa
+        if(_kbhit()){
+            if( _getch() == 'q'){
+                exit(0);
+            }
+        }
+        mostrarSecuencia(elementos,entidadPtr);
+        if(entidadPtr->ejecutarIsListaDisponible()){//Si hay espacio disponible entrara
+            entidadPtr->ejecutarOperacion();
+            elementos--;
+            if(entidadPtr->getTipoEntidad() == "Consumidor" && elementos == 0){
+                break;
+            }
+        }else{
+            if(entidadPtr->getTipoEntidad() == "Consumidor"){
+                elementos = 0;
+            }
+            break;
+        }
+    }
+}
+
+
