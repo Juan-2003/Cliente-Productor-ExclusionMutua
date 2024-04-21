@@ -86,7 +86,7 @@ void Menu::iniciarSecuencia(int elementos, Entidad* entidadPtr){
     for(int i = 0; elementos > 0; i++){ // EC: 5
         //Terminar programa
         if(_kbhit()){
-            if( _getch() == 'q'){
+            if( _getch() == 27){
                 exit(0);
             }
         }
